@@ -24,17 +24,18 @@ const styles = theme => ({
   paper: {
     backgroundColor: theme.palette.primary.dark,
     margin: 0,
-    padding: 0
+    padding: 0,
+    square: false,
   },
   listItem: {
-    color: theme.palette.primary.contrastText
+    color: theme.palette.primary.contrastText,
   },
   icon: {
-    color: theme.palette.primary.contrastText
+    color: theme.palette.primary.contrastText,
   },
   button: {
     // width: 15
-  }
+  },
 })
 
 export const DrawerHeader = props => {
@@ -48,7 +49,7 @@ export const DrawerHeader = props => {
     drawer,
     setDrawerOpen,
     setDrawerUseMinified,
-    width
+    width,
   } = props
 
   return (
@@ -85,8 +86,12 @@ export const DrawerHeader = props => {
                       setDrawerUseMinified(false)
                     }}
                   >
-                    {theme.direction === 'rtl' && <ChevronRight classes={{ root: classes.icon }} />}
-                    {theme.direction !== 'rtl' && <ChevronLeft classes={{ root: classes.icon }} />}
+                    {theme.direction === 'rtl' && (
+                      <ChevronRight classes={{ root: classes.icon }} />
+                    )}
+                    {theme.direction !== 'rtl' && (
+                      <ChevronLeft classes={{ root: classes.icon }} />
+                    )}
                   </IconButton>
                 </ListItemSecondaryAction>
               </Hidden>
@@ -97,25 +102,44 @@ export const DrawerHeader = props => {
                 setDialogIsOpen('auth_menu', !dialogs.auth_menu)
               }}
             >
-              {!drawer.open && width !== 'sm' && width !== 'xs' && auth.photoURL && (
-                <ListItemAvatar>
-                  <Avatar src={auth.photoURL} alt="person" style={{ marginLeft: -7, marginTop: 3 }} />
-                </ListItemAvatar>
-              )}
+              {!drawer.open &&
+                width !== 'sm' &&
+                width !== 'xs' &&
+                auth.photoURL && (
+                  <ListItemAvatar>
+                    <Avatar
+                      src={auth.photoURL}
+                      alt="person"
+                      style={{ marginLeft: -7, marginTop: 3 }}
+                    />
+                  </ListItemAvatar>
+                )}
 
-              {!drawer.open && width !== 'sm' && width !== 'xs' && !auth.photoURL && (
-                <ListItemAvatar>
-                  <Avatar style={{ marginLeft: -7, marginTop: 3 }}>
-                    {' '}
-                    <PersonIcon />{' '}
-                  </Avatar>
-                </ListItemAvatar>
-              )}
+              {!drawer.open &&
+                width !== 'sm' &&
+                width !== 'xs' &&
+                !auth.photoURL && (
+                  <ListItemAvatar>
+                    <Avatar style={{ marginLeft: -7, marginTop: 3 }}>
+                      {' '}
+                      <PersonIcon />{' '}
+                    </Avatar>
+                  </ListItemAvatar>
+                )}
 
               <ListItemText
-                classes={{ primary: classes.listItem, secondary: classes.listItem }}
+                classes={{
+                  primary: classes.listItem,
+                  secondary: classes.listItem,
+                }}
                 style={{
-                  marginLeft: !drawer.open && width !== 'sm' && width !== 'xs' && auth.photoURL ? 7 : undefined
+                  marginLeft:
+                    !drawer.open &&
+                    width !== 'sm' &&
+                    width !== 'xs' &&
+                    auth.photoURL
+                      ? 7
+                      : undefined,
                 }}
                 primary={auth.displayName}
                 secondary={auth.email}
@@ -127,8 +151,12 @@ export const DrawerHeader = props => {
                   }}
                 >
                   <IconButton>
-                    {dialogs.auth_menu && <ArroWDropUpIcon classes={{ root: classes.icon }} />}
-                    {!dialogs.auth_menu && <ArroWDropDownIcon classes={{ root: classes.icon }} />}
+                    {dialogs.auth_menu && (
+                      <ArroWDropUpIcon classes={{ root: classes.icon }} />
+                    )}
+                    {!dialogs.auth_menu && (
+                      <ArroWDropDownIcon classes={{ root: classes.icon }} />
+                    )}
                   </IconButton>
                 </ListItemSecondaryAction>
               )}
@@ -140,7 +168,10 @@ export const DrawerHeader = props => {
       {!auth.isAuthorised && (
         <List>
           <ListItem>
-            <ListItemText classes={{ primary: classes.listItem }} primary={intl.formatMessage({ id: 'app_name' })} />
+            <ListItemText
+              classes={{ primary: classes.listItem }}
+              primary={intl.formatMessage({ id: 'app_name' })}
+            />
             <Hidden smDown implementation="css">
               <ListItemSecondaryAction>
                 <IconButton
@@ -149,8 +180,12 @@ export const DrawerHeader = props => {
                     setDrawerUseMinified(false)
                   }}
                 >
-                  {theme.direction === 'rtl' && <ChevronRight classes={{ root: classes.icon }} />}
-                  {theme.direction !== 'rtl' && <ChevronLeft classes={{ root: classes.icon }} />}
+                  {theme.direction === 'rtl' && (
+                    <ChevronRight classes={{ root: classes.icon }} />
+                  )}
+                  {theme.direction !== 'rtl' && (
+                    <ChevronLeft classes={{ root: classes.icon }} />
+                  )}
                 </IconButton>
               </ListItemSecondaryAction>
             </Hidden>
